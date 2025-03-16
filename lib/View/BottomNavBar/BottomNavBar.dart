@@ -1,86 +1,88 @@
+// 1. Update BottomNavBar to be STATELESS
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:mepro_app/res/Colors/Colors.dart';
 
+import '../../res/Colors/Colors.dart';
 import '../../res/Images/MyImages.dart';
+import 'BottomNavBarNavigation.dart';
 
-class BottomNavBar extends StatefulWidget {
-   int currentIndex;
+class BottomNavBar extends StatelessWidget {
+  final int currentIndex;
   final Function(int) onTap;
 
-   BottomNavBar({
+  const BottomNavBar({
     Key? key,
     required this.currentIndex,
     required this.onTap,
   }) : super(key: key);
 
   @override
-  State<BottomNavBar> createState() => _BottomNavBarState();
-}
-
-class _BottomNavBarState extends State<BottomNavBar> {
-  @override
   Widget build(BuildContext context) {
-
-
     return BottomNavigationBar(
-      currentIndex: widget.currentIndex,
-      onTap: (index) {
-        setState(() {
-          widget.currentIndex = index;
-        });
-      },
+      currentIndex: currentIndex,
+      onTap: onTap, // Directly use parent's callback
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: const Color(0xFFFA5D75),
-      unselectedItemColor: Colors.grey,
-      selectedLabelStyle: TextStyle(fontSize: 10),
-      unselectedLabelStyle: TextStyle(fontSize: 10),
-
+      selectedItemColor: AppColors.red_mainColor,
+      unselectedItemColor: AppColors.greyColor,
+      selectedLabelStyle: TextStyle(
+        fontSize: 10,
+        fontWeight: FontWeight.w600,
+      ),
+      unselectedLabelStyle: TextStyle(
+        fontSize: 10,
+        fontWeight: FontWeight.w500,
+      ),
       backgroundColor: AppColors.whiteColor,
       items: [
-        BottomNavigationBarItem(
-          icon: Transform.scale(
-            scale: 0.8,
-            child: SvgPicture.asset(
-              MyImageClass.homeIcon,
-              color: widget.currentIndex == 0 ? AppColors.red_mainColor2 : Colors.grey,
-            ),
-          ),
+        _buildNavItem(
+          icon: MyImageClass.homeIcon,
           label: 'Home',
+          index: 0,
         ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            MyImageClass.merchantsIcon,
-            height: 24,
-            color: widget.currentIndex == 1 ? const Color(0xFFFA5D75) : Colors.grey,
-          ),
+        _buildNavItem(
+          icon: MyImageClass.merchantsIcon,
           label: 'Merchants',
+          index: 1,
         ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            MyImageClass.voucherIcon,
-            height: 24,
-            color: widget.currentIndex == 2 ? const Color(0xFFFA5D75) : Colors.grey,
-          ),
+        _buildNavItem(
+          icon: MyImageClass.voucherIcon,
           label: 'My Voucher',
+          index: 2,
         ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            MyImageClass.activityIcon,
-            height: 24,
-            color: widget.currentIndex == 3 ? const Color(0xFFFA5D75) : Colors.grey,
-          ),
+        _buildNavItem(
+          icon: MyImageClass.activityIcon,
           label: 'Activity',
+          index: 3,
         ),
-        BottomNavigationBarItem(
-          icon: SvgPicture.asset(
-            MyImageClass.accountIcon,
-            height: 24,
-            color: widget.currentIndex == 4 ? const Color(0xFFFA5D75) : Colors.grey,
-          ),
+        _buildNavItem(
+          icon: MyImageClass.accountIcon,
           label: 'Account',
+          index: 4,
         ),
       ],
+    );
+  }
+
+  BottomNavigationBarItem _buildNavItem({
+    required String icon,
+    required String label,
+    required int index,
+  }) {
+    return BottomNavigationBarItem(
+      icon: SvgPicture.asset(
+        icon,
+        height: 24,
+        color: currentIndex == index
+            ? AppColors.red_mainColor
+            : AppColors.greyColor,
+      ),
+      activeIcon: SvgPicture.asset(
+        icon,
+        height: 24,
+        color: AppColors.red_mainColor,
+      ),
+      label: label,
     );
   }
 }

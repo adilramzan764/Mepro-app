@@ -8,9 +8,13 @@ import 'package:mepro_app/View/SignIn/SignInScreen.dart';
 import 'package:mepro_app/View/SignUp/SignUpScreen.dart';
 import 'package:mepro_app/View/SplashScreen/SplashScreen.dart';
 
+import '../View/DailyDiamond/DailyDiamomdScreen.dart';
 import '../View/ForgetPassword/NewPasswordScreen.dart';
 import '../View/ForgetPassword/OTPCodeScreen.dart';
 import '../View/HomeScreen/HomeScreen.dart';
+import '../View/MeproTierScreen/MeproTierScreen.dart';
+import '../View/MyProfileScreen/MyProfileScreen.dart';
+import '../View/NotificationSettings/NotificationSettings_Screen.dart';
 
 class AppRoutes {
   static List<GetPage> routes = [
@@ -58,6 +62,25 @@ class AppRoutes {
       name: RoutesName.homeScreen,
       page: () => HomeScreen(),
       transition: Transition.zoom,
+    ),
+    GetPage(
+      name: RoutesName.dailyDiamondScreen,
+      page: () => DailyDiamondScreen(),
+      transition: Transition.rightToLeft,
+    )
+    ,GetPage(
+      name: RoutesName.meproTierScreen,
+      page: () => MeproTierScreen(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: RoutesName.myProfileScreen,
+      page: () => MyProfileScreen(),
+      transition: Transition.rightToLeft,
+    ),GetPage(
+      name: RoutesName.notificationSettings_Screen,
+      page: () => NotificationSettings_Screen(),
+      transition: Transition.rightToLeft,
     ),
   ];
 }

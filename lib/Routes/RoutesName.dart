@@ -8,5 +8,9 @@ class RoutesName{
   static const String oTPCodeScreen = '/OTPCodeScreen';
   static const String newPasswordScreen = '/NewPasswordScreen';
   static const String homeScreen = '/HomeScreen';
+  static const String dailyDiamondScreen = '/DailyDiamondScreen';
+  static const String meproTierScreen = '/MeproTierScreen';
+  static const String myProfileScreen = '/MyProfileScreen';
+  static const String notificationSettings_Screen = '/NotificationSettings_Screen';
 
 }

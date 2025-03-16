@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../Colors/Colors.dart';
+import '../Images/MyImages.dart';
 import '../const/ScreenSize.dart';
 
 class SocialLoginButton extends StatelessWidget {
@@ -82,5 +83,51 @@ class SocialLoginButton extends StatelessWidget {
       return Colors.lightBlue;
     }
     return Colors.grey;
+  }
+}
+
+class CustomGoogleButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final String text;
+
+  const CustomGoogleButton({
+    Key? key,
+    required this.onPressed,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      height: ScreenSize.screenHeight(context) * 0.06,
+      child: OutlinedButton(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          side: BorderSide(color: Colors.grey[300]!),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              MyImageClass.google,
+              height: ScreenSize.screenWidth(context) * 0.05,
+            ),
+            SizedBox(width: ScreenSize.screenWidth(context) * 0.02),
+            Text(
+              text,
+              style: TextStyle(
+                color: Colors.black87,
+                fontSize: ScreenSize.screenWidth(context) * 0.04,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

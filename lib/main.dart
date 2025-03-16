@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:mepro_app/View/Account/AccountScreen.dart';
 import 'package:mepro_app/View/HomeScreen/HomeScreen.dart';
 import 'package:mepro_app/res/Colors/Colors.dart';
 
 import 'Routes/AppRoutes.dart';
 import 'Routes/RoutesName.dart';
+import 'View/NotificationSettings/NotificationSettings_Screen.dart';
 
 
 void main() {
@@ -39,9 +41,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      getPages: AppRoutes.routes, // Using GetX routes
-      initialRoute: RoutesName.splashScreen,
-      // home: HomeScreen(),
+      // getPages: AppRoutes.routes, // Using GetX routes
+      // initialRoute: RoutesName.splashScreen,
+      home: NotificationSettings_Screen(),
       builder: (context, child) {
         return EasyLoading.init()(context, child);
       },

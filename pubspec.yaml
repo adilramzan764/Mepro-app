@@ -39,6 +39,9 @@ dependencies:
   get:
   pin_code_fields:
   flutter_easyloading:
+  confetti:
+  carousel_slider:
+
 
 
 dev_dependencies:

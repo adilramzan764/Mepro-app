@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mepro_app/View/HomeScreen/HomeScreen.dart';
 
+import '../Account/AccountScreen.dart';
+import '../ActivityScreen/Activityscreen.dart';
+import '../MerchantsScreen/MerchantsScreen.dart';
+import '../MyVouchersScreen/MyVouchersScreen.dart';
 import 'BottomNavBar.dart';
 
 class BottomNavBarNavigation extends StatefulWidget {
@@ -10,22 +14,21 @@ class BottomNavBarNavigation extends StatefulWidget {
   _BottomNavBarNavigationState createState() => _BottomNavBarNavigationState();
 }
 
+
+// 2. Update BottomNavBarNavigation implementation
 class _BottomNavBarNavigationState extends State<BottomNavBarNavigation> {
-  int _selectedIndex = 0; // Track current selected tab
-
-  late List<Widget> _screens; // Declare list but initialize later
-
-
+  int _selectedIndex = 0;
+  late final List<Widget> _screens;
 
   @override
   void initState() {
     super.initState();
     _screens = [
       HomeScreen(), // Home
-    Center(child: Text('screen 2')),
-      Center(child: Text('screen 3')),
-      Center(child: Text('screen 4')),
-      Center(child: Text('screen 5')),
+      MerchantsScreen(),
+      MyVoucherScreen(),
+      ActivityScreen(),
+      AccountScreen(),
     ];
   }
 
@@ -38,10 +41,7 @@ class _BottomNavBarNavigationState extends State<BottomNavBarNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _screens,
-      ),
+      body: _screens.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,

@@ -9,6 +9,14 @@ class MyImageClass {
   static const String waveEmoji = 'assets/waveEmoji.svg';
   static const String key = 'assets/key.svg';
 
+  //Badges
+  static const String basicBadge = 'assets/basic.png';
+  static const String goldBadge = 'assets/gold.png';
+  static const String platinumBadge = 'assets/platinum.png';
+  static const String championBadge = 'assets/champion.png';
+  static const String ultimateBadge = 'assets/ultimate.png';
+
+
 
   //HomeScreen assets
   static const String silver = 'assets/silver.png';
@@ -39,6 +47,24 @@ class MyImageClass {
 
   static const String reward_starbucks = 'assets/reward_starbucks.png';
   static const String reward_mcdonalds = 'assets/reward_mcdonalds.png';
+
+
+  //MyVouchersScreen Assets
+  static const String qrcode_starbucks = 'assets/qrcode_starbucks.png';
+  static const String qrcode = 'assets/qrcode.svg';
+  static const String starbucks = 'assets/starbucks.png';
+  static const String cocacola = 'assets/coca-cola-seeklogo.png';
+  static const String kfc = 'assets/kfc.png';
+  static const String airbnb = 'assets/airbnb.png';
+  static const String pizzahut = 'assets/pizzahut.png';
+
+  //ActivityScreen Assets
+  static const String receipt = 'assets/receipt.svg';
+  static const String surveys = 'assets/surveys.svg';
+  static const String scanqr = 'assets/scanqr.svg';
+
+
+
 
 
 }

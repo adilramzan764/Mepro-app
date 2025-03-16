@@ -8,4 +8,5 @@ class AppColors {
   static const Color red_mainColor = Color(0xFFFF4D67);
   static const Color red_mainColor2 = Color(0xFFF24360);
   static const Color lightbuttoncolor = Color(0xFFFEF0F2);
+  static  Color? screenBackgroundColor = Colors.grey[50];
 }
