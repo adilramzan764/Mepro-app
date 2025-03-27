@@ -23,12 +23,12 @@ class MyImageClass {
   static const String diamondIcon = 'assets/diamond.svg';
   static const String pointsIcon = 'assets/points.svg';
   static const String bellIcon = 'assets/noti.svg';
-  static const String receiptIcon = 'assets/images/receipt_icon.svg';
-  static const String surveyIcon = 'assets/images/survey_icon.svg';
-  static const String qrCodeIcon = 'assets/images/qr_code_icon.svg';
-  static const String buyPointsIcon = 'assets/images/buy_points_icon.svg';
-  static const String inviteFriendsIcon = 'assets/images/invite_friends_icon.svg';
-  static const String cashingPointsIcon = 'assets/images/cashing_points_icon.svg';
+  static const String receiptIcon = 'assets/receipt_home.svg';
+  static const String surveyIcon = 'assets/survey.svg';
+  static const String qrCodeIcon = 'assets/scan_qr.svg';
+  static const String buyPointsIcon = 'assets/buypoints.svg';
+  static const String inviteFriendsIcon = 'assets/friends.svg';
+  static const String cashingPointsIcon = 'assets/cashing.svg';
   static const String arrowRightIcon = 'assets/images/arrow_right_icon.svg';
 
   // Bottom navigation icons

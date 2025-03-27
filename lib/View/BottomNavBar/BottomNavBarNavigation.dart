@@ -28,6 +28,7 @@ class _BottomNavBarNavigationState extends State<BottomNavBarNavigation> {
       MerchantsScreen(),
       MyVoucherScreen(),
       ActivityScreen(),
+      // Center(child: Text('Account Screen'))
       AccountScreen(),
     ];
   }

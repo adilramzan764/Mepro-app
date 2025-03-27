@@ -29,6 +29,19 @@ Widget buildInputField(BuildContext context, String label, TextEditingController
             border: OutlineInputBorder(borderSide: BorderSide.none),
             contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             prefixIcon: icon != null ? Icon(icon, color: AppColors.lightgreyColor) : null,
+            suffixIcon: label=='Birthdate' ? IconButton(
+              icon: Icon(Icons.calendar_today_outlined,color: AppColors.lightgreyColor),
+              onPressed: () => showDatePicker(
+                context: context,
+                initialDate: DateTime(1995, 12, 25),
+                firstDate: DateTime(1900),
+                lastDate: DateTime.now(),
+              ).then((picked) {
+                if (picked != null) {
+                  controller.text = "${picked.month}/${picked.day}/${picked.year}";
+                }
+              }),
+            ) : null,
           ),
         ),
       ),
@@ -59,6 +72,3 @@ Widget buildDropdownField(BuildContext context, String label, List<String> optio
   );
 }
 
-Widget buildDateField(BuildContext context, String label, TextEditingController controller, Function(BuildContext) onTap) {
-  return buildInputField(context, label, controller, icon: Icons.calendar_today_outlined);
-}

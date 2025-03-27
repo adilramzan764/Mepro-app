@@ -187,7 +187,7 @@ class _MeproTierScreenState extends State<MeproTierScreen> {
                       carouselController: _carouselController,
                       options: CarouselOptions(
                         height: MediaQuery.of(context).size.height * 0.23,
-                        initialPage: 1,
+                        initialPage: 0,
                         viewportFraction: 0.47,
                         enlargeCenterPage: true,
                         enlargeStrategy: CenterPageEnlargeStrategy.height,
@@ -234,7 +234,7 @@ class _MeproTierScreenState extends State<MeproTierScreen> {
                                       height: 8,
                                       width: MediaQuery.of(context).size.width * 0.45,
                                       decoration: BoxDecoration(
-                                        color: _currentIndex == index
+                                        color: _currentIndex >= index
                                             ? Colors.white
                                             : Colors.grey.shade400,
                                         borderRadius: BorderRadius.circular(4),
@@ -245,7 +245,7 @@ class _MeproTierScreenState extends State<MeproTierScreen> {
                                       height: 10,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color: _currentIndex == index
+                                        color: _currentIndex >= index
                                             ? Colors.white
                                             : Colors.grey.shade400,
                                       ),
@@ -256,7 +256,7 @@ class _MeproTierScreenState extends State<MeproTierScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 8.0),
                                   child: Text(
-                                    "Level ${index + 1}",
+                                    "Level ${index}",
                                     style: TextStyle(
                                       color: _currentIndex == index
                                           ? Colors.white

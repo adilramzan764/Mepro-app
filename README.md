@@ -1,7 +1,7 @@
 # mepro_app
 
 adb connect 192.168.0.110:39001
-adb connect 192.168.100.10:39977
+adb connect 192.168.100.10:42941
 
 A new Flutter project.
 
