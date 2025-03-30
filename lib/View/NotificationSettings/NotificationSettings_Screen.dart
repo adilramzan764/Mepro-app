@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../res/Colors/Colors.dart';
+import '../../res/Widgets/AccountAllScreens_Widgets.dart';
 import '../../res/const/ScreenSize.dart';
 
 class NotificationSettings_Screen extends StatefulWidget {
@@ -72,14 +73,14 @@ class _NotificationsScreenState extends State<NotificationSettings_Screen> {
                   ),
                   SizedBox(height: ScreenSize.screenHeight(context) * 0.02),
                   ...notificationSettings.entries.map((entry) {
-                    return _buildNotificationSetting(
+                    return BuildToogleWidget(
                       title: entry.key,
                       isEnabled: entry.value,
                       onChanged: (value) {
                         setState(() {
                           notificationSettings[entry.key] = value;
                         });
-                      },
+                      }, context: context,
                     );
                   }).toList(),
                 ],
@@ -91,72 +92,6 @@ class _NotificationsScreenState extends State<NotificationSettings_Screen> {
     );
   }
 
-  Widget _buildNotificationSetting({
-    required String title,
-    required bool isEnabled,
-    required Function(bool) onChanged,
-  }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: ScreenSize.screenWidth(context) * 0.04,
-                fontWeight: FontWeight.w500,
-                color: AppColors.blackColor.withOpacity(0.8),
-              ),
-            ),
-          ),
-          _buildCustomSwitch(
-            value: isEnabled,
-            onChanged: onChanged,
-          ),
-        ],
-      ),
-    );
-  }
 
-  Widget _buildCustomSwitch({
-    // required BuildContext context,
-    required bool value,
-    required Function(bool) onChanged,
 
-  }) {
-    double screenWidth = ScreenSize.screenWidth(context);
-        double screenHeight = ScreenSize.screenHeight(context);
-    return GestureDetector(
-      onTap: () => onChanged(!value),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        width: screenWidth * 0.15,
-        height: screenHeight * 0.041,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: value ? AppColors.red_mainColor : Colors.grey.shade300,
-        ),
-        child: Stack(
-          children: [
-            AnimatedPositioned(
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeInOut,
-              left: value ? 24 : 4,
-              top: 4,
-              child: Container(
-                width: 24,
-                height: 24,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

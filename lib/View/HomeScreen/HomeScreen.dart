@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../../Routes/RoutesName.dart';
 import '../../res/Colors/Colors.dart';
 import '../../res/Images/MyImages.dart';
 import '../../res/Widgets/HomeScreen_Widgets.dart';
@@ -58,18 +61,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                         ),
                       ),
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.white.withOpacity(0.6), width: 1),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: SvgPicture.asset(
-                            MyImageClass.bellIcon,
-                            height: 20,
-                            color: Colors.white,
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(RoutesName.notificationScreen);
+                        },
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white.withOpacity(0.6), width: 1),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Center(
+                            child: SvgPicture.asset(
+                              MyImageClass.bellIcon,
+                              height: 20,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -199,17 +207,24 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ActionItem(
                                     icon: MyImageClass.receiptIcon,
                                     label: 'Receipt Photo',
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.toNamed(RoutesName.receiptPhotoScreen);
+                                    },
                                   ),
                                   ActionItem(
                                     icon: MyImageClass.surveyIcon,
                                     label: 'Survey',
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.toNamed(RoutesName.surveyScreen);
+
+                                    },
                                   ),
                                   ActionItem(
                                     icon: MyImageClass.qrCodeIcon,
                                     label: 'Scan QR Code',
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.toNamed(RoutesName.qRScannerScreen);
+                                    },
                                   ),
                                 ],
                               ),
@@ -221,17 +236,26 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ActionItem(
                                     icon: MyImageClass.buyPointsIcon,
                                     label: 'Buy Points',
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.toNamed(RoutesName.buyPointsScreen);
+
+                                    },
                                   ),
                                   ActionItem(
                                     icon: MyImageClass.inviteFriendsIcon,
                                     label: 'Invite Friends',
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.toNamed(RoutesName.inviteFriendsScreen);
+
+                                    },
                                   ),
                                   ActionItem(
                                     icon: MyImageClass.cashingPointsIcon,
                                     label: 'Cashing Points',
-                                    onTap: () {},
+                                    onTap: () {
+                                      Get.toNamed(RoutesName.cashingPointsScreen);
+
+                                    },
                                   ),
                                 ],
                               ),
@@ -340,7 +364,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Get.toNamed(RoutesName.promoRewadsScreen);
+                                },
                                 child: Row(
                                   children: [
                                     const Text(

@@ -75,8 +75,6 @@ class VoucherController extends GetxController {
         redeemDate: '',
         status: 'Active',
       ),
-
-      // Used Vouchers
       VoucherModel(
         title: 'Pizza Party Anyone? Get...',
         validUntil: 'Dec 20, 2024',
@@ -122,21 +120,29 @@ class VoucherController extends GetxController {
         redeemDate: 'Dec 02, 2024 • 09:32AM',
         status: 'Used',
       ),
-
     ];
 
     vouchers.assignAll(allVouchers);
   }
 
   List<VoucherModel> getFilteredVouchers() {
-    return vouchers.where((voucher) => voucher.status == tabs[selectedTabIndex.value]).toList();
+    final filteredByStatus = vouchers.where((voucher) => voucher.status == tabs[selectedTabIndex.value]).toList();
+
+    if (searchQuery.value.isEmpty) {
+      return filteredByStatus;
+    } else {
+      return filteredByStatus.where((voucher) =>
+      voucher.title.toLowerCase().contains(searchQuery.value.toLowerCase()) ||
+          voucher.merchant.toLowerCase().contains(searchQuery.value.toLowerCase()),
+      ).toList();
+    }
   }
 
   void changeTab(int index) {
     selectedTabIndex.value = index;
   }
 
-  // Update search query
+  // Search query update
   void updateSearchQuery(String query) {
     searchQuery.value = query;
   }
@@ -147,6 +153,4 @@ class VoucherController extends GetxController {
     searchController.clear();
     isSearching.value = false;
   }
-
-
 }

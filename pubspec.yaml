@@ -41,6 +41,17 @@ dependencies:
   flutter_easyloading:
   confetti:
   carousel_slider:
+  country_flags:
+  permission_handler:
+  image_picker:
+  intl:
+  device_info_plus:
+  mobile_scanner:
+  share_plus:
+
+
+
+
 
 
 

@@ -8,11 +8,22 @@ import '../../res/Images/MyImages.dart';
 import '../../res/Widgets/AccountScreen_Widgets.dart';
 import '../../res/const/ScreenSize.dart';
 import '../DailyDiamond/DailyDiamondDialog.dart';
+import '../LogOut/LogOut.dart';
 
 class AccountScreen extends StatelessWidget {
-  const AccountScreen({Key? key}) : super(key: key);
+   AccountScreen({Key? key}) : super(key: key);
 
-  @override
+   void showLogOutSheet(BuildContext context) {
+     showModalBottomSheet(
+       context: context,
+       isScrollControlled: true,
+       backgroundColor: Colors.transparent,
+       builder: (context) => LogOut_BottomSheet(),
+     );
+   }
+
+
+   @override
   Widget build(BuildContext context) {
     final double screenWidth = ScreenSize.screenWidth(context);
     final double screenHeight = ScreenSize.screenHeight(context);
@@ -98,12 +109,37 @@ class AccountScreen extends StatelessWidget {
 
                         },
                         child: BuildMenuCard(context, Icons.notifications_none, 'Notifications')),
-                    BuildMenuCard(context, Icons.shield_outlined, 'Account & Security'),
-                    BuildMenuCard(context, Icons.credit_card_outlined, 'Payment Methods'),
-                    BuildMenuCard(context, Icons.sync_alt, 'Linked Accounts'),
-                    BuildMenuCard(context, Icons.remove_red_eye_outlined, 'App Appearance'),
+                    InkWell(
+                        onTap: (){
+                          Get.toNamed(RoutesName.accountSecurityScreen);
+
+                        },
+                        child: BuildMenuCard(context, Icons.shield_outlined, 'Account & Security')),
+                    InkWell(
+                        onTap: (){
+                          Get.toNamed(RoutesName.paymentMethodsScreen);
+
+                        },
+                        child: BuildMenuCard(context, Icons.credit_card_outlined, 'Payment Methods')),
+                    InkWell(
+                        onTap: (){
+                          Get.toNamed(RoutesName.linkedAccountsScreen);
+
+                        },
+                        child: BuildMenuCard(context, Icons.sync_alt, 'Linked Accounts')),
+                    InkWell(
+                        onTap: (){
+                          Get.toNamed(RoutesName.appAppearanceScreen);
+
+                        },
+                        child: BuildMenuCard(context, Icons.remove_red_eye_outlined, 'App Appearance')),
                     BuildMenuCard(context, Icons.analytics_outlined, 'Data & Analytics'),
-                    BuildMenuCard(context, Icons.help_outline, 'Help & Support'),
+                    InkWell(
+                        onTap: (){
+                          Get.toNamed(RoutesName.helpSupportScreen);
+
+                        },
+                        child: BuildMenuCard(context, Icons.help_outline, 'Help & Support')),
 
                     // Logout option
                     Container(
@@ -128,6 +164,7 @@ class AccountScreen extends StatelessWidget {
                         ),
                         onTap: () {
                           // Handle logout action
+                          showLogOutSheet(context);
                         },
                       ),
                     ),

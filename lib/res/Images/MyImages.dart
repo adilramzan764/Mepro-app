@@ -6,6 +6,13 @@ class MyImageClass {
   static const String mobilemokeup3 = 'assets/mobilemokeup3.png';
   static const String twitter = 'assets/twitter.svg';
   static const String google = 'assets/google.svg';
+  static const String facebook = 'assets/facebook.svg';
+  static const String apple = 'assets/apple.svg';
+  static const String paypal = 'assets/paypal.svg';
+  static const String mastercard = 'assets/mastercard.svg';
+  static const String visa = 'assets/visa.svg';
+  static const String jcb = 'assets/jcb.svg';
+  static const String amazon = 'assets/amazon.svg';
   static const String waveEmoji = 'assets/waveEmoji.svg';
   static const String key = 'assets/key.svg';
 
@@ -47,6 +54,7 @@ class MyImageClass {
 
   static const String reward_starbucks = 'assets/reward_starbucks.png';
   static const String reward_mcdonalds = 'assets/reward_mcdonalds.png';
+  static const String reward_cocacla = 'assets/cocareward.png';
 
 
   //MyVouchersScreen Assets
@@ -60,8 +68,13 @@ class MyImageClass {
 
   //ActivityScreen Assets
   static const String receipt = 'assets/receipt.svg';
+  static const String receipt_pic = 'assets/receiptpic.PNG';
   static const String surveys = 'assets/surveys.svg';
   static const String scanqr = 'assets/scanqr.svg';
+  static const String survey = 'assets/survey.png';
+
+
+  static const String inviteFriends = 'assets/inviteFriends.png';
 
 
 

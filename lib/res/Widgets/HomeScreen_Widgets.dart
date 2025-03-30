@@ -181,6 +181,8 @@ class RewardItem extends StatelessWidget {
                     ),
                   ],
                 ),
+                SizedBox(height: ScreenSize.screenHeight(context) * 0.008),
+
               ],
             ),
           ),

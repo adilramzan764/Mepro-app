@@ -1,26 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
+import '../../Controller/MerchantsController.dart';
 import '../../res/Colors/Colors.dart';
 import '../../res/Images/MyImages.dart';
 import '../../res/Widgets/MerchantScreen_Widget.dart';
 import '../../res/const/ScreenSize.dart';
 
-class MerchantsScreen extends StatefulWidget {
-  const MerchantsScreen({Key? key}) : super(key: key);
 
-  @override
-  State<MerchantsScreen> createState() => _MerchantsScreenState();
-}
-
-class _MerchantsScreenState extends State<MerchantsScreen> {
-  int _selectedCategoryIndex = 0;
-  final List<String> _categories = [
-    'All',
-    'Restaurant',
-    'Thai massage',
-    'Vouchers'
-  ];
+class MerchantsScreen extends StatelessWidget {
+  final MerchantsController controller = Get.put(MerchantsController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +21,7 @@ class _MerchantsScreenState extends State<MerchantsScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 10.0,top: 8,right: 10),
+              padding: const EdgeInsets.only(left: 10.0, top: 8, right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -38,13 +29,11 @@ class _MerchantsScreenState extends State<MerchantsScreen> {
                   // Logo Container
                   SizedBox(
                     height: ScreenSize.screenHeight(context) * 0.025,
-                    // More reasonable height
                     width: ScreenSize.screenWidth(context) * 0.12,
-                    // Better width ratio
                     child: SvgPicture.asset(
                       'assets/Logo Mepro.svg',
                       color: AppColors.red_mainColor,
-                      fit: BoxFit.contain, // Ensure proper fitting
+                      fit: BoxFit.contain,
                     ),
                   ),
 
@@ -54,7 +43,6 @@ class _MerchantsScreenState extends State<MerchantsScreen> {
                     style: TextStyle(
                       color: AppColors.blackColor,
                       fontSize: ScreenSize.screenWidth(context) * 0.045,
-                      // Responsive font
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -64,7 +52,7 @@ class _MerchantsScreenState extends State<MerchantsScreen> {
                     icon: Icon(
                       Icons.more_vert,
                       color: AppColors.blackColor,
-                      size: ScreenSize.screenWidth(context) * 0.06, // Responsive icon size
+                      size: ScreenSize.screenWidth(context) * 0.06,
                     ),
                     onPressed: () {},
                   ),
@@ -73,9 +61,7 @@ class _MerchantsScreenState extends State<MerchantsScreen> {
             ),
 
             Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
                 height: 50,
                 decoration: BoxDecoration(
@@ -91,6 +77,7 @@ class _MerchantsScreenState extends State<MerchantsScreen> {
                   ],
                 ),
                 child: TextField(
+                  onChanged: (value) => controller.updateSearchQuery(value),
                   decoration: InputDecoration(
                     hintText: 'Search Merchants..',
                     hintStyle: TextStyle(
@@ -98,7 +85,7 @@ class _MerchantsScreenState extends State<MerchantsScreen> {
                       fontSize: 13,
                     ),
                     prefixIcon:
-                        Icon(Icons.search, color: AppColors.lightgreyColor),
+                    Icon(Icons.search, color: AppColors.lightgreyColor),
                     border: InputBorder.none,
                     contentPadding: const EdgeInsets.symmetric(vertical: 15),
                   ),
@@ -106,77 +93,75 @@ class _MerchantsScreenState extends State<MerchantsScreen> {
               ),
             ),
             SizedBox(height: ScreenSize.screenHeight(context) * 0.02),
+
             // Category filters
             SizedBox(
               height: ScreenSize.screenHeight(context) * 0.05,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: _categories.length,
+                itemCount: controller.categories.length,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedCategoryIndex = index;
-                      });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 10),
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      decoration: BoxDecoration(
-                        color: _selectedCategoryIndex == index
-                            ? AppColors.red_mainColor.withOpacity(0.1)
-                            : AppColors.whiteColor,
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: _selectedCategoryIndex == index
-                              ? AppColors.red_mainColor.withOpacity(0.3)
-                              : Colors.grey.withOpacity(0.3),
+                    onTap: () => controller.selectCategory(index),
+                    child: Obx(() =>
+                        Container(
+                          margin: const EdgeInsets.only(right: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          decoration: BoxDecoration(
+                            color: controller.selectedCategoryIndex.value == index
+                                ? AppColors.red_mainColor.withOpacity(0.1)
+                                : AppColors.whiteColor,
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                              color: controller.selectedCategoryIndex.value == index
+                                  ? AppColors.red_mainColor.withOpacity(0.3)
+                                  : Colors.grey.withOpacity(0.3),
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              controller.categories[index],
+                              style: TextStyle(
+                                  color: controller.selectedCategoryIndex.value == index
+                                      ? AppColors.red_mainColor
+                                      : AppColors.blackColor,
+                                  fontWeight: controller.selectedCategoryIndex.value == index
+                                      ? FontWeight.w600
+                                      : FontWeight.normal,
+                                  fontSize: 12),
+                            ),
+                          ),
                         ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          _categories[index],
-                          style: TextStyle(
-                              color: _selectedCategoryIndex == index
-                                  ? AppColors.red_mainColor
-                                  : AppColors.blackColor,
-                              fontWeight: _selectedCategoryIndex == index
-                                  ? FontWeight.w600
-                                  : FontWeight.normal,
-                              fontSize: 12),
-                        ),
-                      ),
-                    ),
+                    )
+
                   );
                 },
               ),
             ),
 
             // Merchant Grid
-            Expanded(
-              child: GridView.count(
+            Obx(() => Expanded(
+              child: controller.filteredMerchants.isEmpty
+                  ? Center(child: Text('No merchants found'))
+                  : GridView.count(
                 padding: const EdgeInsets.all(20),
                 crossAxisCount: 2,
                 childAspectRatio: 1.2,
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,
-                children: [
-                  BuildMerchantCard('Thai Restaurant', 4.5, 1000,
-                      MyImageClass.thaicorner, MyImageClass.silver, context),
-                  BuildMerchantCard('Thai massage', 4.5, 1000,
-                      MyImageClass.thaicorner, MyImageClass.silver, context),
-                  BuildMerchantCard('McDonald\'s', 4.5, 1000,
-                      MyImageClass.macdonald, MyImageClass.silver, context),
-                  BuildMerchantCard('Thai massage', 4.5, 1000,
-                      MyImageClass.thaicorner, MyImageClass.silver, context),
-                  BuildMerchantCard('Burger King', 4.5, 1000,
-                      MyImageClass.burgerking, MyImageClass.silver, context),
-                  BuildMerchantCard('Thai Restaurant', 4.5, 1000,
-                      MyImageClass.thaicorner, MyImageClass.silver, context),
-                ],
+                children: controller.filteredMerchants.map((merchant) =>
+                    BuildMerchantCard(
+                      merchant.name,
+                      merchant.rating,
+                      merchant.distance,
+                      merchant.image,
+                      merchant.badge,
+                      context,
+                    ),
+                ).toList(),
               ),
-            ),
+            )),
           ],
         ),
       ),
